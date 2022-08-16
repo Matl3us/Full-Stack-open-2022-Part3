@@ -2,5 +2,5 @@
 
 Repository for submitting exercises for Part 3 of the Full Stack open 2022 course
 
-Link to teha application:
+Link to the application:
 https://murmuring-springs-99129.herokuapp.com/api/persons
