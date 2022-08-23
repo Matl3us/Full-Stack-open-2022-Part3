@@ -22,8 +22,8 @@ const generateId = () => {
 }
 
 app.get('/api/persons', (request, response) => {
-    Person.find({}).then(notes => {
-        response.json(notes)
+    Person.find({}).then(persons => {
+        response.json(persons)
     })
 })
 
@@ -58,6 +58,21 @@ app.post('/api/persons', (request, response) => {
         })
 })
 
+app.put('/api/persons/:id', (request, response, next) => {
+    const body = request.body
+
+    const person = {
+        name: body.name,
+        number: body.number,
+    }
+
+    Person.findByIdAndUpdate(request.params.id, person)
+        .then(updatedPerson => {
+            response.json(updatedPerson)
+        })
+        .catch(error => next(error))
+})
+
 app.delete('/api/persons/:id', (request, response, next) => {
     Person.findByIdAndRemove(request.params.id)
         .then(result => {
@@ -67,8 +82,10 @@ app.delete('/api/persons/:id', (request, response, next) => {
 })
 
 app.get('/info', (request, response) => {
-    response.send('<p>Phonebook has info for '
-        + persons.length + ' people</p><p>' + new Date() + '</p>')
+    Person.find({}).then(persons => {
+        response.send('<p>Phonebook has info for '
+            + persons.length + ' people</p><p>' + new Date() + '</p>')
+    })
 })
 
 const unknownEndpoint = (request, response) => {
