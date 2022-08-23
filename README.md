@@ -3,4 +3,4 @@
 Repository for submitting exercises for Part 3 of the Full Stack open 2022 course
 
 Link to the application:
-https://murmuring-springs-99129.herokuapp.com/api/persons
+https://murmuring-springs-99129.herokuapp.com
